@@ -14,8 +14,10 @@ func New() Set {
 }
 
 func (s *Set) Add(t string) {
-	s.Items[s.Size] = t
-	s.Size++
+	if !(s.Contains(t)) {
+		s.Items[s.Size] = t
+		s.Size++
+	}
 }
 
 func (s *Set) Contains(t string) bool {
