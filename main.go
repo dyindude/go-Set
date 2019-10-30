@@ -7,20 +7,27 @@ import (
 const MAX_SIZE = 10
 
 type Set struct {
-	Size  int
-	Items [MAX_SIZE]string
+	Size   int
+	Oldest int
+	Items  [MAX_SIZE]string
 }
 
 func New() Set {
 	return Set{
-		Size: 0,
+		Size:   0,
+		Oldest: 0,
 	}
 }
 
 func (s *Set) Add(t string) {
 	if !(s.Contains(t)) {
-		s.Items[s.Size] = t
-		s.Size++
+		if s.Size == MAX_SIZE {
+			s.Items[s.Oldest] = t
+			s.Oldest++
+		} else {
+			s.Items[s.Size] = t
+			s.Size++
+		}
 	}
 }
 
