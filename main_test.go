@@ -22,6 +22,21 @@ func ExampleData() (Set, Set, Set) {
 	return empty, one, many
 }
 
+func FullData() Set {
+	full := New()
+	full.Add("fee")
+	full.Add("fie")
+	full.Add("foo")
+	full.Add("fum")
+	full.Add("fuz")
+	full.Add("bee")
+	full.Add("bie")
+	full.Add("boo")
+	full.Add("bum")
+	full.Add("buz")
+	return full
+}
+
 func TestAdd(t *testing.T) {
 	empty, one, many := ExampleData()
 
@@ -106,5 +121,19 @@ func TestRemove(t *testing.T) {
 	err = many.Remove("baz")
 	if err == nil {
 		t.Errorf("Remove() did not provide expected error when removing item not in Set")
+	}
+}
+
+func TestOverwriteOldest(t *testing.T) {
+	full := FullData()
+	full.Add("newvalue")
+	if full.Size > MAX_SIZE {
+		t.Errorf("full has an invalid size %d", full.Size)
+	}
+	if !(full.Contains("newvalue")) {
+		t.Errorf("full does not contain \"newvalue\" after adding it.")
+	}
+	if full.Contains("fee") {
+		t.Errorf("full still contains \"fee\" (the first value added) after adding another set item")
 	}
 }
