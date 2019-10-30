@@ -10,7 +10,7 @@ func TestNew(t *testing.T) {
 	fmt.Printf("%T\n", empty)
 }
 
-func TestAdd(t *testing.T) {
+func ExampleData() (Set, Set, Set) {
 	empty := New()
 	one := New()
 	many := New()
@@ -18,6 +18,12 @@ func TestAdd(t *testing.T) {
 	one.Add("foo")
 	many.Add("foo")
 	many.Add("bar")
+
+	return empty, one, many
+}
+
+func TestAdd(t *testing.T) {
+	empty, one, many := ExampleData()
 
 	if empty.Size != 0 {
 		t.Errorf("empty.Size = %d; want 0", empty.Size)
@@ -28,5 +34,4 @@ func TestAdd(t *testing.T) {
 	if !(many.Size >= 2) {
 		t.Errorf("many.Size = %d; want >= 2", many.Size)
 	}
-
 }
