@@ -35,3 +35,17 @@ func TestAdd(t *testing.T) {
 		t.Errorf("many.Size = %d; want >= 2", many.Size)
 	}
 }
+
+func TestContains(t *testing.T) {
+	empty, one, many := ExampleData()
+
+	if empty.Contains("") {
+		t.Errorf("empty contains an empty string \"\" which is not valid for our example.")
+	}
+	if !one.Contains("foo") {
+		t.Errorf("one does not contain foo")
+	}
+	if !many.Contains("foo") || !many.Contains("bar") {
+		t.Errorf("many does not contain foo or bar")
+	}
+}
