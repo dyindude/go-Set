@@ -49,3 +49,28 @@ func TestContains(t *testing.T) {
 		t.Errorf("many does not contain foo or bar")
 	}
 }
+
+func TestContainsNoDuplicates(t *testing.T) {
+	_, one, many := ExampleData()
+
+	one.Add("foo")
+	many.Add("bar")
+	found := 0
+	for _, v := range one.Items {
+		if v == "foo" {
+			found++
+		}
+	}
+	if found > 1 {
+		t.Errorf("one contains %d instances of \"foo\", should only have 1", found)
+	}
+	found = 0
+	for _, v := range many.Items {
+		if v == "bar" {
+			found++
+		}
+	}
+	if found > 1 {
+		t.Errorf("many contains %d instances of \"bar\", should only have 1", found)
+	}
+}
