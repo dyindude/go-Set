@@ -25,7 +25,7 @@ func TestAdd(t *testing.T) {
 	if one.Size != 1 {
 		t.Errorf("one.Size = %d; want 1", one.Size)
 	}
-	if !many.Size >= 2 {
+	if !(many.Size >= 2) {
 		t.Errorf("many.Size = %d; want >= 2", many.Size)
 	}
 
