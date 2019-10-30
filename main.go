@@ -1,7 +1,10 @@
 package main
 
+const MAX_SIZE = 10
+
 type Set struct {
-	Size int
+	Size  int
+	Items [MAX_SIZE]string
 }
 
 func New() Set {
@@ -11,5 +14,18 @@ func New() Set {
 }
 
 func (s *Set) Add(t string) {
+	s.Items[s.Size] = t
 	s.Size++
+}
+
+func (s *Set) Contains(t string) bool {
+	if s.Size == 0 {
+		return false
+	}
+	for _, v := range s.Items {
+		if v == t {
+			return true
+		}
+	}
+	return false
 }
