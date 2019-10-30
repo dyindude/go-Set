@@ -83,7 +83,7 @@ func TestRemove(t *testing.T) {
 		t.Errorf("error removing \"foo\" from one: %s", err)
 	}
 	if one.Size != 0 {
-		t.Errorf("After removing \"foo\", one should be size 0. got %s", one.Size)
+		t.Errorf("After removing \"foo\", one should be size 0. got %d", one.Size)
 	}
 	err = one.Remove("bar")
 	if err == nil {
@@ -94,14 +94,14 @@ func TestRemove(t *testing.T) {
 		t.Errorf("error removing \"foo\" from many: %s", err)
 	}
 	if many.Size != 1 {
-		t.Errorf("After removing \"foo\", many should be size 1. got %s", many.Size)
+		t.Errorf("After removing \"foo\", many should be size 1. got %d", many.Size)
 	}
 	err = many.Remove("bar")
 	if err != nil {
 		t.Errorf("error removing \"bar\" from many: %s", err)
 	}
 	if many.Size != 0 {
-		t.Errorf("After removing \"bar\", many should be size 0. got %s", many.Size)
+		t.Errorf("After removing \"bar\", many should be size 0. got %d", many.Size)
 	}
 	err = many.Remove("baz")
 	if err == nil {
