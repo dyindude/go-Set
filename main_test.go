@@ -74,3 +74,37 @@ func TestContainsNoDuplicates(t *testing.T) {
 		t.Errorf("many contains %d instances of \"bar\", should only have 1", found)
 	}
 }
+
+func TestRemove(t *testing.T) {
+	_, one, many := ExampleData()
+
+	err := one.Remove("foo")
+	if err != nil {
+		t.Errorf("error removing \"foo\" from one: %s", err)
+	}
+	if one.Size != 0 {
+		t.Errorf("After removing \"foo\", one should be size 0. got %s", one.Size)
+	}
+	err = one.Remove("bar")
+	if err == nil {
+		t.Errorf("Remove() did not provide expected error when removing item not in Set")
+	}
+	err = many.Remove("foo")
+	if err != nil {
+		t.Errorf("error removing \"foo\" from many: %s", err)
+	}
+	if many.Size != 1 {
+		t.Errorf("After removing \"foo\", many should be size 1. got %s", many.Size)
+	}
+	err = many.Remove("bar")
+	if err != nil {
+		t.Errorf("error removing \"bar\" from many: %s", err)
+	}
+	if many.Size != 0 {
+		t.Errorf("After removing \"bar\", many should be size 0. got %s", many.Size)
+	}
+	err = many.Remove("baz")
+	if err == nil {
+		t.Errorf("Remove() did not provide expected error when removing item not in Set")
+	}
+}
