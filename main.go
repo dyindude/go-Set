@@ -9,3 +9,7 @@ func New() Set {
 		Size: 0,
 	}
 }
+
+func (s *Set) Add(t string) {
+	s.Size++
+}
