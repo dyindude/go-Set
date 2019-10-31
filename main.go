@@ -8,25 +8,25 @@ const MAX_SIZE = 10
 
 type Set struct {
 	Size   int
-	Oldest int
+	Cursor int
 	Items  [MAX_SIZE]string
 }
 
 func New() Set {
 	return Set{
 		Size:   0,
-		Oldest: 0,
+		Cursor: 0,
 	}
 }
 
 func (s *Set) Add(t string) {
 	if !(s.Contains(t)) {
 		if s.Size == MAX_SIZE {
-			s.Items[s.Oldest] = t
-			if s.Oldest == (MAX_SIZE - 1) {
-				s.Oldest = 0
+			s.Items[s.Cursor] = t
+			if s.Cursor == (MAX_SIZE - 1) {
+				s.Cursor = 0
 			} else {
-				s.Oldest++
+				s.Cursor++
 			}
 		} else {
 			s.Items[s.Size] = t

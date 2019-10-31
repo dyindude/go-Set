@@ -120,7 +120,7 @@ func TestRemove(t *testing.T) {
 	}
 }
 
-func TestOverwriteOldest(t *testing.T) {
+func TestOverwriteCursor(t *testing.T) {
 	full := FullData()
 	full.Add("newvalue")
 	if full.Size > MAX_SIZE {
@@ -147,7 +147,7 @@ func TestFillThrice(t *testing.T) {
 }
 
 func TestRemoveFromFull(t *testing.T) {
-	//we'll reuse some of data from the last test, which sets Oldest to 8
+	//we'll reuse some of data from the last test, which sets Cursor to 8
 	full := FullData()
 	fill := []string{
 		//    1      2      3      4      5      6      7      8
