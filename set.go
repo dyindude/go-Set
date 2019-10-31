@@ -24,17 +24,12 @@ func New() Set {
 //Add adds a string to a Set
 func (s *Set) Add(t string) {
 	if !(s.Contains(t)) {
-		//if our Set is full, replace the oldest item
-		if s.Size == maxSetSize {
-			s.Items[s.Cursor] = t
-			if s.Cursor == (maxSetSize - 1) {
-				s.Cursor = 0
-			} else {
-				s.Cursor++
-			}
-		} else {
-			//can we just insert at Cursor in all cases?
-			s.Items[s.Size] = t
+		s.Items[s.Cursor] = t
+		s.Cursor++
+		if s.Cursor == maxSetSize {
+			s.Cursor = 0
+		}
+		if s.Size < maxSetSize {
 			s.Size++
 		}
 	}
