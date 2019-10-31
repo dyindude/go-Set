@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-const MaxSize = 10
+const maxSetSize = 10
 
 type Set struct {
 	Size   int
 	Cursor int
-	Items  [MaxSize]string
+	Items  [maxSetSize]string
 }
 
 func New() Set {
@@ -21,9 +21,9 @@ func New() Set {
 
 func (s *Set) Add(t string) {
 	if !(s.Contains(t)) {
-		if s.Size == MaxSize {
+		if s.Size == maxSetSize {
 			s.Items[s.Cursor] = t
-			if s.Cursor == (MaxSize - 1) {
+			if s.Cursor == (maxSetSize - 1) {
 				s.Cursor = 0
 			} else {
 				s.Cursor++
@@ -41,10 +41,10 @@ func (s *Set) Remove(t string) error {
 	}
 	for i, v := range s.Items {
 		if v == t {
-			for n := i; n < (MaxSize - 1); n++ {
+			for n := i; n < (maxSetSize - 1); n++ {
 				s.Items[n] = s.Items[n+1] //left shift
 			}
-			s.Items[MaxSize-1] = ""
+			s.Items[maxSetSize-1] = ""
 			s.Size--
 			return nil
 		}
