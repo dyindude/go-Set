@@ -145,3 +145,23 @@ func TestFillThrice(t *testing.T) {
 		full.Add(v)
 	}
 }
+
+func TestRemoveFromFull(t *testing.T) {
+	//we'll reuse some of data from the last test, which sets Oldest to 8
+	full := FullData()
+	fill := []string{
+		//    1      2      3      4      5      6      7      8
+		"gee", "gie", "goo", "gum", "guz", "tee", "tie", "too", //bum, buz
+	}
+	for _, v := range fill {
+		full.Add(v)
+	}
+	full.Remove("too") //here we remove the value at index 7. 8 (bum) is still the oldest value
+	if full.Size != (MAX_SIZE - 1) {
+		t.Errorf("After removing one item, our filled Set is size %d instead of %d", full.Size, (MAX_SIZE - 1))
+	}
+	full.Add("foobar")
+	if !full.Contains("buz") {
+		t.Errorf("expected full Set to still contain value \"buz\"")
+	}
+}
