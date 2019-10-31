@@ -150,7 +150,7 @@ func TestRemoveFromFull(t *testing.T) {
 	//we'll reuse some of data from the last test, which sets Cursor to 8
 	full := FullData()
 	fill := []string{
-		//    1      2      3      4      5      6      7      8
+		//1      2      3      4      5      6      7      8       9   10 //consider zero indexing somehow
 		"gee", "gie", "goo", "gum", "guz", "tee", "tie", "too", //bum, buz
 	}
 	for _, v := range fill {
