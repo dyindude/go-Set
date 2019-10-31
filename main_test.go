@@ -160,7 +160,9 @@ func TestRemoveFromFull(t *testing.T) {
 	if full.Size != (maxSetSize - 1) {
 		t.Errorf("After removing one item, our filled Set is size %d instead of %d", full.Size, (maxSetSize - 1))
 	}
+	full.Remove("goo")
 	full.Add("foobar")
+	full.Add("boofar")
 	if !full.Contains("buz") {
 		t.Errorf("expected full Set to still contain value \"buz\"")
 	}
