@@ -123,7 +123,7 @@ func TestRemove(t *testing.T) {
 func TestOverwriteCursor(t *testing.T) {
 	full := FullData()
 	full.Add("newvalue")
-	if full.Size > MAX_SIZE {
+	if full.Size > MaxSize {
 		t.Errorf("full has an invalid size %d", full.Size)
 	}
 	if !(full.Contains("newvalue")) {
@@ -157,8 +157,8 @@ func TestRemoveFromFull(t *testing.T) {
 		full.Add(v)
 	}
 	full.Remove("too") //here we remove the value at index 7. 8 (bum) is still the oldest value
-	if full.Size != (MAX_SIZE - 1) {
-		t.Errorf("After removing one item, our filled Set is size %d instead of %d", full.Size, (MAX_SIZE - 1))
+	if full.Size != (MaxSize - 1) {
+		t.Errorf("After removing one item, our filled Set is size %d instead of %d", full.Size, (MaxSize - 1))
 	}
 	full.Add("foobar")
 	if !full.Contains("buz") {
