@@ -137,3 +137,27 @@ func TestOverwriteOldest(t *testing.T) {
 		t.Errorf("full still contains \"fee\" (the first value added) after adding another set item")
 	}
 }
+
+func TestFillThrice(t *testing.T) {
+	full := FullData()
+	full.Add("gee")
+	full.Add("gie")
+	full.Add("goo")
+	full.Add("gum")
+	full.Add("guz")
+	full.Add("tee")
+	full.Add("tie")
+	full.Add("too")
+	full.Add("tum")
+	full.Add("tuz")
+	full.Add("fee")
+	full.Add("fie")
+	full.Add("foo")
+	full.Add("fum")
+	full.Add("fuz")
+	full.Add("bee")
+	full.Add("bie")
+	full.Add("boo")
+	full.Add("bum")
+	full.Add("buz")
+}
