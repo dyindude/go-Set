@@ -23,7 +23,11 @@ func (s *Set) Add(t string) {
 	if !(s.Contains(t)) {
 		if s.Size == MAX_SIZE {
 			s.Items[s.Oldest] = t
-			s.Oldest++
+			if s.Oldest == (MAX_SIZE - 1) {
+				s.Oldest = 0
+			} else {
+				s.Oldest++
+			}
 		} else {
 			s.Items[s.Size] = t
 			s.Size++
