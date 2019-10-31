@@ -7,7 +7,10 @@ import (
 
 func TestNew(t *testing.T) {
 	empty := New()
-	fmt.Printf("%T\n", empty)
+	emptyLiteral := Set{}
+	if empty != emptyLiteral {
+		t.Errorf("New() did not provide empty Set")
+	}
 }
 
 func ExampleData() (Set, Set, Set) {
