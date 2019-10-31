@@ -41,7 +41,10 @@ func (s *Set) Remove(t string) error {
 	}
 	for i, v := range s.Items {
 		if v == t {
-			s.Items[i] = ""
+			for n := i; n < (MAX_SIZE - 1); n++ {
+				s.Items[n] = s.Items[n+1] //left shift
+			}
+			s.Items[MAX_SIZE-1] = ""
 			s.Size--
 			return nil
 		}
